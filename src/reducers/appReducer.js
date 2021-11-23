@@ -6,15 +6,14 @@ const appReducer = (state=[], action) => {
       return [...state, action.payload]
     case ADD_COMMENT:
       return state.map(currentBook => {
-        if (currentBook.id !== currentBook.payload.id){
+        if (currentBook.id !== currentBook.payload.id_book){
           return currentBook
-        }
-        const currentID = {id: currentBook}
+        }       
 
-        return [...state, action.payload, currentID]
+        return [...state, action.payload]
       });
       case DELETE_BOOK:
-        return state.filter(currentBook => currentBook.id !== currentBook.payload.id)
+        return state.filter(currentBook => currentBook.id !== currentBook.payload.id_book)
       default:
         console.warn(`nie ma akcji type ${action.type}`)
         return state;

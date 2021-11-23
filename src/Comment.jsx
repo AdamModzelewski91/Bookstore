@@ -23,6 +23,7 @@ export const Comment = ({
   }
 
   addComment(rateComment)  
+  
   }
 
   return (     
