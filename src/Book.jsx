@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
-import { Comment } from './Comment';
+import  Comment from './Comment';
 import { CommentList } from './CommentList';
 import { connect } from 'react-redux'
 
-const Book = ({title, author, category, price, publicYear, pages, books, id_book}) => {  
+const Book = ({title, author, category, price, publicYear, pages, id_book, books}) => {  
   const [isVisibleAddComm, setIsVisibleAddComm] = useState(false)  
-  const listOfComments =  books.map(book => (
-    <CommentList key={book.id_book} {...book}/>
+
+  const toggleElement = () => setIsVisibleAddComm(prev => !prev)
+
+  
+  const listOfComments = books.books.map(book => (    
+    <CommentList 
+      key={book.id_comment}      
+      id_book={id_book}       
+      commentAuthor={book.commentAuthor}
+      commentRate={book.commentRate}
+      comment={book.comment}         
+    />
   ))     
 
   return ( 
@@ -17,9 +27,9 @@ const Book = ({title, author, category, price, publicYear, pages, books, id_book
       <p>{price}</p>
       <p>{publicYear}</p>
       <p>{pages}</p>       
-      {listOfComments.filter(comm => Number(comm.key) === id_book)}
-      <button onClick={() => setIsVisibleAddComm(prev => !prev)}> { isVisibleAddComm ? 'Anuluj' : 'Dodaj komentarz'}</button>
-      {isVisibleAddComm ? <Comment/> : null}
+      {listOfComments}
+      <button onClick={toggleElement}> { isVisibleAddComm ? 'Cancel' : 'Add comment'}</button>
+      {isVisibleAddComm ? <Comment callback={toggleElement}/> : null}
     </div>
    );
 }

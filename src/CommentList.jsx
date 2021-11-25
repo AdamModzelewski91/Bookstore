@@ -5,8 +5,7 @@ export const CommentList = ({commentAuthor, commentRate, comment}) => {
     <div>
       <h3>{commentAuthor}</h3>
       <p>{commentRate}</p>
-      <p>{comment}</p>
-      Lista
+      <p>{comment}</p>      
     </div>
    );
 }

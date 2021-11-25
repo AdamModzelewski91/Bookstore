@@ -101,7 +101,7 @@ const Form = ({
         </label>
       </div>   
       <button type="submit">
-        Dodaj książkę
+        Add Book
       </button> 
     </form>
   )

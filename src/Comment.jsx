@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { addComment } from './actions/appActions';
 import { connect } from 'react-redux'
 
-export const Comment = ({
+const Comment = ({
   addComment,
-  commentAuthor = '',
-  commentRate= '',
-  comment= '',
+  commentAuthor = '1',
+  commentRate= '2',
+  comment= '3',
+  callback,
 }) => {  
 
   const [inputAuthorComment, setInputAuthorOfComment] = useState(commentAuthor) 
@@ -20,10 +21,13 @@ export const Comment = ({
     commentAuthor: inputAuthorComment,
     commentRate: Number(inputCommentRate),
     comment: inputComment,
+         
   }
 
   addComment(rateComment)  
   
+  callback()
+
   }
 
   return (     
@@ -58,7 +62,7 @@ export const Comment = ({
           />
         </label>
       </div>
-      <button type='submit'> Zatwierdź </button>
+      <button type='submit' > Confirm </button>
     </form>  
    );
 }

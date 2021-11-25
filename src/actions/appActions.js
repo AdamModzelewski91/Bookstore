@@ -11,23 +11,24 @@ export const addBook = ({ title, author, category, price, publicYear, pages }) =
     price,
     publicYear,
     pages,
-    id_book: Math.floor(Math.random() * 999999 - 100000), 
+    id_book: Math.floor(Math.random() * 999999), 
   }
 });
 
-export const deleteBook = ({id}) => ({
+export const deleteBook = ({id_book}) => ({
   type: DELETE_BOOK,
   payload: {
-    id
+    id_book
   }
 });
 
-export const addComment = ({commentAuthor, commentRate, comment}) => ({
+export const addComment = ({commentAuthor, commentRate, comment, id_book}) => ({
   type: ADD_COMMENT,
   payload: {
     commentAuthor,
     commentRate,
-    comment,
-    id_comment: Math.floor(Math.random() * 1000000 - 9999999),
+    comment,  
+    id_book,  
+    id_comment: Math.floor(Math.random() *  9999999),
   }
 });
