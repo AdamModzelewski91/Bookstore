@@ -2,6 +2,7 @@ export const ADD_BOOK = "ADD_BOOK";
 export const DELETE_BOOK = "DELETE_BOOK";
 export const ADD_COMMENT = "ADD_COMMENT";
 
+
 export const addBook = ({ title, author, category, price, publicYear, pages }) => ({
   type: ADD_BOOK,
   payload: {

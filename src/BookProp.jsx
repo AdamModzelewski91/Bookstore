@@ -1,6 +1,6 @@
 import React from 'react';
 
-export  const BookProp = ({title, author, category, price, publicYear, pages,}) => {
+export  const BookProp = ({title, author, category, price, publicYear, pages}) => {
   return ( 
     <div>
       <h1>{title}</h1>
