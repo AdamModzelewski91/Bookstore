@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { addBook } from './actions/appActions';
 
 const Form = ({ 
-  addBook,
   title = '',
   author = '',
   category = '',
@@ -19,6 +18,8 @@ const Form = ({
   const [priceInput, setPriceInput] = useState(price)
   const [publicYearInput, setPublicYearInput] = useState(publicYear)
   const [pagesInput, setPagesInput] = useState(pages)
+
+  const dispatch = useDispatch()
   
   const handleOnSubmit = e => {
     e.preventDefault();
@@ -32,7 +33,7 @@ const Form = ({
       pages: Number(pagesInput),
     }
 
-    addBook(addNewBook)
+    dispatch(addBook(addNewBook))
     // console.log(addNewBook)    
   }
   
@@ -107,10 +108,4 @@ const Form = ({
   )
 }
 
-const connectActionsToProps = ({
-  addBook,
-})
-
-const FormConsumer = connect(null, connectActionsToProps)(Form)
-
-export default FormConsumer
+export default Form

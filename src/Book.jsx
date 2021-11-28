@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import  Comment from './Comment';
 import { CommentList } from './CommentList';
-import { connect } from 'react-redux'
-// import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-
-
-const Book = ({title, author, category, price, publicYear, id_book, pages, books} ) => {  
+const Book = ({title, author, category, price, publicYear, id_book, pages} ) => {  
   const [isVisibleAddComm, setIsVisibleAddComm] = useState(false)  
 
   const toggleElement = () => setIsVisibleAddComm(prev => !prev)  
+
+  const books = useSelector(store => store.books)
   
   const listOfComments = books.comments.map(comment => (    
     <CommentList 
@@ -38,10 +37,5 @@ const Book = ({title, author, category, price, publicYear, id_book, pages, books
     </div>
    );
 }
- 
-const connectReduxStateToProps = store => ({
-  books: store.books
-})
-const BookComments = connect(connectReduxStateToProps)(Book)
 
-export default BookComments
+export default Book

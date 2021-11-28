@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { addComment } from './actions/appActions';
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-const Comment = ({
-  addComment,
+const Comment = ({  
   commentAuthor = '1',
   commentRate= '2',
   comment= '3',
@@ -13,6 +12,8 @@ const Comment = ({
   const [inputAuthorComment, setInputAuthorOfComment] = useState(commentAuthor) 
   const [inputCommentRate, setInputCommentRate] = useState(commentRate) 
   const [inputComment, setInputComment] = useState(comment) 
+
+  const dispatch = useDispatch();
 
   const handleOnSubmit = e => {
     e.preventDefault();
@@ -24,7 +25,7 @@ const Comment = ({
          
   }
 
-  addComment(rateComment)  
+  dispatch(addComment(rateComment))
   
   callback()
 
@@ -67,10 +68,4 @@ const Comment = ({
    );
 }
  
-const connectActionsToProps = ({
-  addComment
-})
-
-const CommentBook = connect(null, connectActionsToProps)(Comment)
-
-export default CommentBook
+export default Comment

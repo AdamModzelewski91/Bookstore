@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import './App.css';
 import  Form from './Form'
 import store from './store/store';
-import List from './List.jsx'
+import List from './List'
 
 export const App = () => {
   return (
