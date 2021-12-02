@@ -29,7 +29,7 @@ export const addComment = ({commentAuthor, commentRate, comment, id_book}) => ({
     commentAuthor,
     commentRate,
     comment,  
-    id_book,  
+    id_book: id_book,  
     id_comment: Math.floor(Math.random() *  9999999),
   }
 });

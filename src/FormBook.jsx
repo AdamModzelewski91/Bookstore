@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import { addBook } from './actions/appActions';
 
-const Form = ({ 
+const FormBook = ({ 
   title = '',
   author = '',
   category = '',
@@ -30,7 +30,7 @@ const Form = ({
       category: categoryInput,
       price: Number(priceInput),      
       publicYear: Number(publicYearInput),
-      pages: Number(pagesInput),
+      pages: Number(pagesInput),     
     }
 
     dispatch(addBook(addNewBook))
@@ -108,4 +108,4 @@ const Form = ({
   )
 }
 
-export default Form
+export default FormBook

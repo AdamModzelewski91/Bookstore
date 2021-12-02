@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { addComment } from './actions/appActions';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-const Comment = ({  
+const FormComment = ({  
   commentAuthor = '1',
   commentRate= '2',
   comment= '3',
   callback,
+  id_book,
 }) => {  
 
   const [inputAuthorComment, setInputAuthorOfComment] = useState(commentAuthor) 
@@ -15,20 +16,24 @@ const Comment = ({
 
   const dispatch = useDispatch();
 
+  const books = useSelector(store => store)
+
   const handleOnSubmit = e => {
     e.preventDefault();
+
+    console.log(books.books.books.filter(currentBook => console.log(currentBook.id_book)))
 
   const rateComment = {
     commentAuthor: inputAuthorComment,
     commentRate: Number(inputCommentRate),
     comment: inputComment,
-         
+    id_book,     
   }
 
   dispatch(addComment(rateComment))
   
   callback()
-
+  
   }
 
   return (     
@@ -68,4 +73,4 @@ const Comment = ({
    );
 }
  
-export default Comment
+export default FormComment

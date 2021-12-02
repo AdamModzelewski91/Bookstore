@@ -1,15 +1,15 @@
 import React from 'react';
-import Book from './Book';
+import Element from './Element';
 import { useSelector } from 'react-redux'
 
 const List = () => {
   const books = useSelector(store => store.books)
   const listOfBooks = books.books.map(segment => (    
-      <Book key={segment.id_book} {...segment}/>  
+      <Element key={segment.id_book} {...segment}/>  
   ));
   return ( 
     <div>      
-      {listOfBooks} 
+      {listOfBooks}      
     </div>
    );
 }

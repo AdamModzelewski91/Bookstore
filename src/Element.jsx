@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import  Comment from './Comment';
-import { CommentList } from './CommentList';
+import  FormComment from './FormComment';
 import { useSelector } from 'react-redux'
+import { CommentList } from './CommentList';
+
 
 const Book = ({title, author, category, price, publicYear, id_book, pages} ) => {  
   const [isVisibleAddComm, setIsVisibleAddComm] = useState(false)  
@@ -9,6 +10,8 @@ const Book = ({title, author, category, price, publicYear, id_book, pages} ) => 
   const toggleElement = () => setIsVisibleAddComm(prev => !prev)  
 
   const books = useSelector(store => store.books)
+
+  console.log(id_book)
   
   const listOfComments = books.comments.map(comment => (    
     <CommentList 
@@ -19,8 +22,8 @@ const Book = ({title, author, category, price, publicYear, id_book, pages} ) => 
       commentRate={comment.commentRate}
       comment={comment.comment}         
     />
-  ))     
-
+  ))      
+  
   return ( 
     <div>
       <h1>{title}</h1>
@@ -28,12 +31,14 @@ const Book = ({title, author, category, price, publicYear, id_book, pages} ) => 
       <p>{category}</p>
       <p>{price}</p>
       <p>{publicYear}</p>
-      <p>{pages}</p>   
-      {/* {console.log(bookId)} */}     
-      {/* {listOfComments} */}
+      <p>{pages}</p>       
       {listOfComments.filter(single => single.props.id === id_book)}
       <button onClick={toggleElement}> { isVisibleAddComm ? 'Cancel' : 'Add comment'}</button>
-      {isVisibleAddComm ? <Comment callback={toggleElement}/> : null}
+      {isVisibleAddComm ? 
+      <FormComment          
+        id_book={id_book}           
+        callback={toggleElement}
+        /> : null}
     </div>
    );
 }
