@@ -1,6 +1,7 @@
 export const ADD_BOOK = "ADD_BOOK";
 export const DELETE_BOOK = "DELETE_BOOK";
 export const ADD_COMMENT = "ADD_COMMENT";
+export const DELETE_COMMENT = "DELETE_COMMENT";
 
 
 export const addBook = ({ title, author, category, price, publicYear, pages }) => ({
@@ -19,7 +20,14 @@ export const addBook = ({ title, author, category, price, publicYear, pages }) =
 export const deleteBook = ({id_book}) => ({
   type: DELETE_BOOK,
   payload: {
-    id_book
+    id_book,   
+  }
+});
+
+export const deleteComment = ({id_comment}) => ({
+  type: DELETE_COMMENT,
+  payload: {
+    id_comment,   
   }
 });
 
