@@ -1,39 +1,41 @@
 import React, { useState } from 'react';
-import { addComment } from './actions/appActions';
-import { useDispatch, useSelector } from 'react-redux'
+import { addComment, editComment } from './actions/appActions';
+import { useDispatch } from 'react-redux'
 
 const FormComment = ({  
   commentAuthor = '1',
   commentRate= '2',
   comment= '3',
-  callback,
-  id_book,
+  callbackAdd,  
+  callbackEdit,  
+  id_book, 
+  id_comment, 
 }) => {  
 
   const [inputAuthorComment, setInputAuthorOfComment] = useState(commentAuthor) 
   const [inputCommentRate, setInputCommentRate] = useState(commentRate) 
   const [inputComment, setInputComment] = useState(comment) 
 
-  const dispatch = useDispatch();
-
-  const books = useSelector(store => store)
+  const dispatch = useDispatch();  
 
   const handleOnSubmit = e => {
-    e.preventDefault();
+    e.preventDefault();    
 
-    console.log(books.books.books.filter(currentBook => console.log(currentBook.id_book)))
-
-  const rateComment = {
+  const addComm = {
     commentAuthor: inputAuthorComment,
     commentRate: Number(inputCommentRate),
     comment: inputComment,
-    id_book,     
+    id_book,  
+    id_comment   
   }
 
-  dispatch(addComment(rateComment))
-  
-  callback()
-  
+  id_comment ? dispatch(editComment(addComm)) : dispatch(addComment(addComm))
+
+  if (id_comment) {
+    callbackEdit()
+  } else {
+    callbackAdd()
+  }    
   }
 
   return (     
@@ -68,7 +70,7 @@ const FormComment = ({
           />
         </label>
       </div>
-      <button type='submit' > Confirm </button>
+      <button type='submit' >Public</button>
     </form>  
    );
 }

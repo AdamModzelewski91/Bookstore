@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
 
-import { addBook } from './actions/appActions';
+import { addBook, editBook } from './actions/appActions';
 
 const FormBook = ({ 
   title = '',
@@ -10,6 +10,8 @@ const FormBook = ({
   price = '',
   publicYear = '',
   pages = '',  
+  id_book,
+  callbackEditBook,
 }) => {
 
   const [titleInput, setTitleInput] = useState(title)
@@ -30,11 +32,16 @@ const FormBook = ({
       category: categoryInput,
       price: Number(priceInput),      
       publicYear: Number(publicYearInput),
-      pages: Number(pagesInput),     
+      pages: Number(pagesInput), 
+      id_book,    
     }
 
-    dispatch(addBook(addNewBook))
-    // console.log(addNewBook)    
+    id_book ? dispatch(editBook(addNewBook)) : dispatch(addBook(addNewBook))
+
+    if (id_book) {
+      callbackEditBook()
+    }
+       
   }
   
   return (
@@ -101,9 +108,7 @@ const FormBook = ({
           />
         </label>
       </div>   
-      <button type="submit">
-        Add Book
-      </button> 
+      <button type="submit">Add Book</button> 
     </form>
   )
 }
