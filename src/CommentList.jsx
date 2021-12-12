@@ -24,7 +24,7 @@ const CommentList = ({commentAuthor, commentRate, comment, id_comment, id_book})
       
     />
   ) : (
-    <div>      
+    <div className="btn-comment">      
        <button onClick={toggleComment}>Edit Comment</button>        
        <button onClick={handleDeleteComment}>Delete comment</button> 
     </div>
@@ -32,10 +32,14 @@ const CommentList = ({commentAuthor, commentRate, comment, id_comment, id_book})
   
   return ( 
     <div>
-      <div className='comments'>
-        <h3>{commentAuthor}</h3>
-        <p>{commentRate}</p>
-        <p>{comment}</p>  
+      <div className ='comment'>
+        <div className = 'wrap'>
+          <p>Name</p>
+          <h4>{commentAuthor}</h4>
+          <p>Rate</p>
+          <h4>{commentRate}</h4>       
+        </div>
+        <textarea>{comment}</textarea>  
       </div>
       {formOrCommentElement}    
     </div>

@@ -1,0 +1,73 @@
+@import './App.scss';
+$comment-background: rgba(204, 255, 204, 0.5);
+
+@mixin breakpoint ($point) {
+  @if $point == tablet_768w{
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $point == desktop_1200w{
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+}
+
+.comment{
+  background-color: $comment-background;
+  border-radius: 25px;  
+  padding: 15px 5vw;
+  margin: 0 5vh 0 5vh;
+  @include breakpoint (desktop_1200w){
+    width: 60%;
+    margin: 0 auto;
+    padding: 15px 2vw;
+  }
+  .wrap h4{
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    padding-left: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  textarea{  
+    font-family: $font-stack;
+    width: 100%;
+    min-height: 100px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 5px;
+    padding-left: 5px;
+    border: none;
+    resize: vertical;
+  }
+}
+
+.btn-comment {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;  
+  @include breakpoint(desktop_1200w){
+    margin: 0 20%;
+    justify-content: space-between;
+  }
+ 
+  button{
+    width: 40%;
+    @include breakpoint(tablet_768w){
+      width: 35%;
+    }
+    @include breakpoint(desktop_1200w){
+      width: 40%;     
+    }   
+  }
+}
+ 
+// media query
+
+@media (min-width: 768px){
+  .comment,
+  .comment textarea,
+  .btn-comment button{
+    font-size: 130%;
+  }  
+}

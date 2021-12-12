@@ -11,7 +11,7 @@ const findCurrentBook = (state, action) => {
         return element
       }
      
-    const {title, author, category, price, publicYear, pages} = action
+    const {title, author, category, price, publicYear, pages, description} = action
        
     return {    
       title,
@@ -20,6 +20,7 @@ const findCurrentBook = (state, action) => {
       price,
       publicYear,
       pages,
+      description,
       id_book: element.id_book,          
   }
 })

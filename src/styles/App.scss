@@ -1,0 +1,122 @@
+$font-stack: Roboto, sans-serif;
+$primary-color: #222;
+$background-color: rgb(244, 248, 248);
+$button-color: rgb(143, 207, 177);
+$font-header: 'Lobster Two', cursive;
+
+
+@mixin breakpoint($point) {
+  @if $point == mobile_540w {
+    @media (min-width: 540px) {
+      @content;
+    }
+  } @else if $point == tablet_768w {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $point == ipadpro_1024w {
+    @media (min-width: 1024px) and (min-height: 1366px) {
+      @content;
+    }
+  } @else if $point == desktop_1200w {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }  
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+  font: 100% $font-stack;
+  color: $primary-color;
+  background-color: $background-color; 
+}
+
+button {
+  border: none;
+  background-color: $button-color;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: medium;
+  cursor: pointer;
+  transition: 0.3s;
+  :hover{
+    background-color: lighten($color: $button-color, $amount: 7%);
+    box-shadow: 0px 0px 5px 1px $button-color;
+  }
+}
+
+header{  
+  position: relative;
+  z-index: 1;
+  background-image: url('../img/a-book.jpg');  
+  background-size: contain;
+  background-position-y: -12%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;  
+  text-align: center;  
+  height: 15vh;
+  @include breakpoint(desktop_1200w){
+    background-size: cover;
+    background-position-y: -600px;
+  }
+  h1{  
+    color: #fff;
+    font: 200% $font-header;
+    line-height: 15vh;  
+    @include breakpoint(mobile_540w){
+      font-size: 250%;
+    }
+    @include breakpoint(tablet_768w){
+      font-size: 350%;
+    }
+    @include breakpoint(ipadpro_1024w){
+      font-size: 450%;
+    }    
+  }
+}
+
+#focus:focus{
+  outline: none;  
+  border: 2px solid rgb(123, 186, 202);
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+.blue{
+  background-color: #6fa1c2;
+  :hover{
+    background-color: lighten($color: #6fa1c2, $amount: 7%);
+    box-shadow: 0px 0px 5px 1px #6fa1c2;
+  }
+}
+
+footer{  
+  position: fixed;  
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  color: #fff;  
+  text-align: center;
+  line-height: 5vh;
+  background-color: $primary-color;
+  p{
+    font-size: 14px;
+    @include breakpoint(ipadpro_1024w){
+      font-size: 150%;
+    }
+    @include breakpoint(desktop_1200w){
+      font-size: 160%;
+    }
+  }
+}
+
+

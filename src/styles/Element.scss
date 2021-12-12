@@ -1,0 +1,79 @@
+@import './App.scss';
+
+$books-background: rgba(0, 82, 252, 0.1);
+$element-background: rgba(0, 82, 252, 0.1);
+
+
+@mixin breakpoint($point) {
+  @if $point == desktop_1200w{
+    @media (min-width: 1200px){
+      @content;
+    }
+  }
+}
+
+.br-5{
+  border-radius: 5px;
+}
+
+.pad-l-5{
+  padding-left: 5px;
+}
+
+.bg-input{
+  background-color: rgba(255,255,255, 0.3);
+}
+
+.element{
+  position: relative;  
+  background-color: $element-background;
+  border-bottom-left-radius: 25px;  
+  border-bottom-right-radius: 25px;    
+}
+
+.books{   
+  position: relative;
+  background-color: $books-background;
+  border-bottom-left-radius: 25px;  
+  border-bottom-right-radius: 25px;   
+  padding: 20px 20px;   
+  margin: 0 5vh 0 5vh;
+  @include breakpoint(desktop_1200w){
+    width: 60%;
+    margin: 0 auto;
+  }
+  p{
+    padding: 10px 0 5px;    
+  }
+  p:nth-child(1){
+    padding-top: 0;
+  }
+  textarea{
+    font-family: $font-stack;
+    width: 100%;
+    background-color: rgba(255,255,255, 0.5); 
+    resize: vertical;
+    min-height: 150px;
+    border: none;
+  }
+}
+
+.commentBTNs{
+  display: flex;  
+  button{
+    width: 30%;
+    border-radius: 0;
+    flex-grow: 1;  
+    margin-top: 10px;
+  }
+}
+
+// media query
+
+@media (min-width: 768px) {
+  .commentBTNs button,
+  .books textarea,
+  .books{
+    font-size: 130%;
+  }  
+}

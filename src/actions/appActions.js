@@ -6,7 +6,7 @@ export const EDIT_COMMENT = "EDIT_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
 
-export const addBook = ({ title, author, category, price, publicYear, pages }) => ({
+export const addBook = ({ title, author, category, price, publicYear, pages, description }) => ({
   type: ADD_BOOK,
   payload: {
     title,
@@ -15,11 +15,12 @@ export const addBook = ({ title, author, category, price, publicYear, pages }) =
     price,
     publicYear,
     pages,
+    description,
     id_book: Math.floor(Math.random() * 999999), 
   }
 });
 
-export const editBook = ({ title, author, category, price, publicYear, pages, id_book }) => ({
+export const editBook = ({ title, author, category, price, publicYear, pages, id_book, description }) => ({
   type: EDIT_BOOK,
   payload: {
     title,
@@ -28,6 +29,7 @@ export const editBook = ({ title, author, category, price, publicYear, pages, id
     price,
     publicYear,
     pages,
+    description,
     id_book, 
   }
 });

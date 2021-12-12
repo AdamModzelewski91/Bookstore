@@ -3,9 +3,9 @@ import { addComment, editComment } from './actions/appActions';
 import { useDispatch } from 'react-redux'
 
 const FormComment = ({  
-  commentAuthor = '1',
-  commentRate= '2',
-  comment= '3',
+  commentAuthor = '',
+  commentRate= '',
+  comment= '',
   callbackAdd,  
   callbackEdit,  
   id_book, 
@@ -35,14 +35,20 @@ const FormComment = ({
     callbackEdit()
   } else {
     callbackAdd()
-  }    
+  } 
+
+  setInputAuthorOfComment('')
+  setInputCommentRate('')
+  setInputComment('')
+
   }
 
-  return (     
+  return ( 
+    <div className='form commentRelative'>  
     <form onSubmit={handleOnSubmit}>
       <div>
         <label>
-          Name:
+         <p>Name:</p> 
           <input 
             onChange={e => setInputAuthorOfComment(e.target.value)}
             type="text"
@@ -52,7 +58,7 @@ const FormComment = ({
       </div>
       <div>
         <label>
-          Rate:
+         <p>Rate:</p> 
           <input 
             onChange={e => setInputCommentRate(e.target.value)}
             type="number"
@@ -62,16 +68,17 @@ const FormComment = ({
       </div>
       <div>
         <label>
-          Comment:
-          <input 
+          <p>Comment:</p> 
+          <textarea 
             onChange={e => setInputComment(e.target.value)}
             type="text"
             value={inputComment}
           />
         </label>
-      </div>
-      <button type='submit' >Public</button>
+      </div>        
+       <button type='submit' >Public</button>      
     </form>  
+    </div>
    );
 }
  
