@@ -100,16 +100,21 @@ header{
 }
 
 footer{  
-  position: fixed;  
-  width: 100%;
+  position: relative;
   bottom: 0;
   left: 0;
-  color: #fff;  
-  text-align: center;
-  line-height: 5vh;
-  background-color: $primary-color;
+  margin-top: 5vh;
+  
   p{
+    background-color: $primary-color;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    color: #fff;  
+    text-align: center;
+    position: absolute;  
     font-size: 14px;
+    line-height: 5vh;
     @include breakpoint(ipadpro_1024w){
       font-size: 150%;
     }
