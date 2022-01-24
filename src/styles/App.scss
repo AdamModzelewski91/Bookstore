@@ -1,28 +1,28 @@
 $font-stack: Roboto, sans-serif;
 $primary-color: #222;
-$background-color: rgb(244, 248, 248);
-$button-color: rgb(143, 207, 177);
-$font-header: 'Lobster Two', cursive;
-
+$button-color: #333333;
+$font-header: Papyrus, serif;
+$form-background: #EBA21E;
+$comment-background: rgba(179, 179, 179, 0.9);
 
 @mixin breakpoint($point) {
-  @if $point == mobile_540w {
-    @media (min-width: 540px) {
+  @if $point == mobile_540w{
+    @media (min-width: 540px){
       @content;
     }
-  } @else if $point == tablet_768w {
-    @media (min-width: 768px) {
+  } @else if $point == tablet_768w{
+    @media (min-width: 768px){
       @content;
     }
-  } @else if $point == ipadpro_1024w {
-    @media (min-width: 1024px) and (min-height: 1366px) {
+  } @else if $point == ipadpro_1024w{
+    @media (min-width: 1024px) and (min-height: 1366px){
       @content;
     }
-  } @else if $point == desktop_1200w {
+  } @else if $point == desktop_1200w{
     @media (min-width: 1200px) {
       @content;
     }
-  }  
+  }
 }
 
 *{
@@ -35,48 +35,47 @@ body {
   position: relative;
   font: 100% $font-stack;
   color: $primary-color;
-  background-color: $background-color; 
+  background-image: url('../img/a-book.jpg'); 
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position:  center;
 }
 
 button {
   border: none;
   background-color: $button-color;
   color: white;
-  padding: 10px 20px;
+  width: 30px;  
+  height: 30px;
   border-radius: 5px;
-  text-transform: uppercase;
-  font-weight: medium;
-  cursor: pointer;
-  transition: 0.3s;
-  :hover{
-    background-color: lighten($color: $button-color, $amount: 7%);
-    box-shadow: 0px 0px 5px 1px $button-color;
+  text-transform: uppercase;  
+  margin: 5px;
+  cursor: pointer;  
+  
+  i{
+    font-size: 23px;    
   }
+  
 }
 
 header{  
   position: relative;
   z-index: 1;
-  background-image: url('../img/a-book.jpg');  
-  background-size: contain;
-  background-position-y: -12%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;  
+  background-color: $form-background; 
   text-align: center;  
-  height: 15vh;
-  @include breakpoint(desktop_1200w){
-    background-size: cover;
-    background-position-y: -600px;
-  }
+  height: 10vh;
+ 
   h1{  
     color: #fff;
-    font: 200% $font-header;
-    line-height: 15vh;  
+    font: 150% $font-header;
+    text-transform: uppercase;
+    line-height: 10vh;  
     @include breakpoint(mobile_540w){
-      font-size: 250%;
+      font-size: 200%;
     }
     @include breakpoint(tablet_768w){
-      font-size: 350%;
+      font-size: 250%;
     }
     @include breakpoint(ipadpro_1024w){
       font-size: 450%;
@@ -89,14 +88,6 @@ header{
   border: 2px solid rgb(123, 186, 202);
   border-radius: 5px;
   transition: 0.2s;
-}
-
-.blue{
-  background-color: #6fa1c2;
-  :hover{
-    background-color: lighten($color: #6fa1c2, $amount: 7%);
-    box-shadow: 0px 0px 5px 1px #6fa1c2;
-  }
 }
 
 footer{  
@@ -113,14 +104,8 @@ footer{
     color: #fff;  
     text-align: center;
     position: fixed;  
-    font-size: 14px;
+    font-size: 120%;
     line-height: 5vh;
-    @include breakpoint(ipadpro_1024w){
-      font-size: 150%;
-    }
-    @include breakpoint(desktop_1200w){
-      font-size: 160%;
-    }
   }
 }
 

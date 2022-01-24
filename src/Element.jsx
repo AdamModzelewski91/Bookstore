@@ -26,7 +26,9 @@ const Element = ({title, author, category, price, publicYear, id_book, pages, de
       id_comment={comment.id_comment}      
       commentAuthor={comment.commentAuthor}
       commentRate={comment.commentRate}
-      comment={comment.comment}         
+      comment={comment.comment}       
+      toggleElement={toggleElement} 
+      isVisibleAddComm={isVisibleAddComm} 
     />
   ))    
   
@@ -44,31 +46,39 @@ const Element = ({title, author, category, price, publicYear, id_book, pages, de
     />
   ) : (
     <div className='commentBTNs'>
-      <button className="blue" onClick={toggleBook}>Edit Book</button>
-      <button className="red" onClick={handleDeleteElement}>Delete book</button>
-      <button onClick={toggleElement}> { isVisibleAddComm ? 'Cancel' : 'Add comment'}</button>
+      <div className='right-corner'>
+        <button onClick={toggleBook}><i className="fas fa-pencil-alt"></i></button>
+        <button onClick={handleDeleteElement}><i className="fas fa-times"></i></button>
+      </div>
+      <button className='addComment' onClick={toggleElement}> { isVisibleAddComm ? 'Cancel' : 'Add comment'}</button>
     </div>
   )
   
   return ( 
     <div className='element'>
-      <div className='books'>        
-          <p>Title:</p>
-          <h2 className='br-5 pad-l-5 bg-input'>{title}</h2>
-          <p>Author:</p>
-          <h3 className='br-5 pad-l-5 bg-input'>{author}</h3>
-          <p>Category:</p>
-          <h4 className='br-5 pad-l-5 bg-input'>{category}</h4>
-          <p>Price:</p>
-          <h4 className='br-5 pad-l-5 bg-input'>{price}</h4>
-          <p>Public year:</p>
-          <h4 className='br-5 pad-l-5 bg-input'>{publicYear}</h4>
-          <p>Pages:</p>
-          <h4 className='br-5 pad-l-5 bg-input'>{pages}</h4> 
-          <p>Description:</p>
-          <textarea className='br-5 pad-l-5 bg-input'>{description}</textarea>
-      </div>    
-
+      <div className='books'>   
+        <h2>{title}</h2>
+        <h3>{author}</h3>
+        <table>
+          <tbody>
+            <tr>
+              <td>Category</td>
+              <td>Public year</td>
+              <td>Price</td>
+              <td>Pages</td>
+            </tr>
+            <tr>
+              <th>{category}</th>
+              <th>{publicYear}</th>
+              <th>{price} $</th>
+              <th>{pages}</th>
+            </tr>
+          </tbody>
+        </table>       
+        <p>Description:</p>
+        <p className='textarea'>{description}</p>
+        {formBookElement}   
+      </div> 
       <div className='comments' >
         {listOfComments.filter(single => single.props.id_book === id_book)}
       </div>
@@ -79,7 +89,6 @@ const Element = ({title, author, category, price, publicYear, id_book, pages, de
       callbackAdd={toggleElement}        
       /> : null}
       
-      {formBookElement}   
     </div>
    );
 }

@@ -3,7 +3,7 @@ import Element from './Element';
 import { useSelector } from 'react-redux'
 
 const List = () => {
-  const books = useSelector(store =>  store.books)  
+  const books = useSelector(store => store.books)  
   const listOfBooks = books.books.map(segment => (    
       <Element key={segment.id_book} {...segment}/>  
   ));

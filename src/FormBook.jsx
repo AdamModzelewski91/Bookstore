@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { addBook, editBook } from './actions/appActions';
+
 
 const FormBook = ({ 
   title = '',
@@ -26,6 +27,29 @@ const FormBook = ({
   const [descriptionInput, setDescriptionInput] = useState(description)
 
   const dispatch = useDispatch()
+
+  const [titlePlaceholder, setTitlePlaceholder] = useState(false)
+  const [authorPlaceholder, setAuthorPlaceholder] = useState(false)
+  const [categoryPlaceholder, setCategoryPlaceholder] = useState(false)
+  const [pricePlaceholder, setPricePlaceholder] = useState(false)
+  const [publicYearPlaceholder, setPublicYearPlaceholder] = useState(false)
+  const [pagesPlaceholder, setPagesPlaceholder] = useState(false)
+  const [descriptionPlaceholder, setDescriptionPlaceholder] = useState(false)
+
+
+  useEffect(()=> {
+    const time = setTimeout(()=> {
+      setTitlePlaceholder(false)
+      setAuthorPlaceholder(false) 
+      setCategoryPlaceholder(false) 
+      setPricePlaceholder(false)
+      setPublicYearPlaceholder(false)
+      setPagesPlaceholder(false) 
+      setDescriptionPlaceholder(false)          
+    }, 3000)
+    return () => clearTimeout(time)
+    
+  }, [titlePlaceholder, authorPlaceholder, categoryPlaceholder, pricePlaceholder, publicYearPlaceholder, pagesPlaceholder, descriptionPlaceholder])
   
   const handleOnSubmit = e => {
     e.preventDefault();
@@ -40,42 +64,34 @@ const FormBook = ({
       description: descriptionInput,
       id_book,    
     }
-
-    if (titleInput.trim() === '' || titleInput.length < 2) {
-      alert('Title field must be completed!') 
-      setTitleInput('') 
+    
+    if (titleInput.trim() === '' || titleInput.length < 2) {        
+      setTitlePlaceholder(true) 
     }   
-    else if (authorInput.trim() === '' || authorInput.length < 2) {
-      alert('Author field must be completed!') 
-      setAuthorInput('')  
+    if (authorInput.trim() === '' || authorInput.length < 2) {
+      setAuthorPlaceholder(true)  
     } 
-    else if (categoryInput.trim() === '' || categoryInput.length < 2) {
-      alert('Category field must be completed!') 
-      setCategoryInput('') 
+    if (categoryInput.trim() === '') {
+      setCategoryPlaceholder(true) 
     } 
-    else if (priceInput === '') {
-      alert('Price field must be completed!') 
-      setPriceInput('')
+    if (priceInput === '') {
+      setPricePlaceholder(true)
     }     
-    else if (publicYearInput === '' ||  publicYearInput > new Date().getFullYear()) {      
-      alert('Year field is incorrect!') 
-      setPublicYearInput('')
+    if (publicYearInput === '' ||  publicYearInput > new Date().getFullYear()) {      
+      setPublicYearPlaceholder(true)
     } 
-    else if (pagesInput === '') {
-      alert('Page field must be completed!') 
-      setPagesInput('') 
+    if (pagesInput === '') {
+      setPagesPlaceholder(true) 
     } 
-    else if (descriptionInput.trim() === '' || descriptionInput.length < 20 ) {
-      alert('Description field to short!') 
-      setDescriptionInput('')
-    } 
+    if (descriptionInput.trim() === '' || descriptionInput.length < 20 ) {
+      setDescriptionPlaceholder(true)
+    }    
         
     else {
-
       id_book ? dispatch(editBook(addNewBook)) : dispatch(addBook(addNewBook))
 
       if (id_book) {
-        callbackEditBook()
+        callbackEditBook()        
       }   
 
       setTitleInput('') 
@@ -89,84 +105,68 @@ const FormBook = ({
     }
   }
   
-  return (
+  return (   
     <div className={`form ${isFormVisible ? 'active' : null}`}>
-    <form onSubmit={handleOnSubmit}>
-      <div>
-        <label>
-          <p>Title:</p>
-          <input id='focus'
-            onChange={e => setTitleInput(e.target.value)}
-            type="text" 
-            value={titleInput}                   
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          <p>Author:</p>
-          <input id='focus'
-            onChange={e => setAuthorInput(e.target.value)}
-            type="text"
-            value={authorInput}                    
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          <p>Category:</p> 
-          <input id='focus'
+      <form onSubmit={handleOnSubmit}>  
+      <div className='wrapp-form'>       
+         <input
+          id='title'
+          className={titlePlaceholder ? 'red' : null}
+          onChange={e => setTitleInput(e.target.value)}
+          type="text" 
+          placeholder={titlePlaceholder ? 'Title to short!' : 'Title'}
+          value={titleInput}                   
+        />        
+        <input 
+          id='author'
+          className={authorPlaceholder ? 'red' : null}
+          onChange={e => setAuthorInput(e.target.value)}
+          type="text"
+          placeholder={authorPlaceholder ? 'To short name!' : 'Author'}
+          value={authorInput}                    
+        />    
+        <div className='wrapp-pack'>
+          <input
+            className={categoryPlaceholder ? 'red' : null}
             onChange={e => setCategoryInput(e.target.value)}
             type="text" 
+            placeholder={categoryPlaceholder ? 'Type a category!' : 'Category'}
             value={categoryInput}            
           />
-        </label>
-      </div>
-      <div>
-        <label>
-          <p>Price:</p> 
-          <input id='focus'
+          <input
+            className={pricePlaceholder ? 'red' : null}
             onChange={e => setPriceInput(e.target.value)}
             type="number" 
+            placeholder={pricePlaceholder ? 'Type a price!' : 'Price ($)'}
             value={priceInput}            
           />
-        </label>
-      </div>
-      <div>
-        <label>
-          <p>Public Year:</p> 
-          <input id='focus'
+          <input
+            className={publicYearPlaceholder ? 'red' : null}
             onChange={e => setPublicYearInput(e.target.value)}
             type="number" 
-            placeholder="yyyy"                    
-            value={publicYearInput}            
+            placeholder={publicYearPlaceholder ? 'Type a public year!' : 'Public year'}
+            value={publicYearInput}
           />
-        </label>
-      </div>
-      <div>
-        <label>
-          <p>Pages:</p> 
-          <input id='focus'
+          <input
+            className={pagesPlaceholder ? 'red' : null}
             onChange={e => setPagesInput(e.target.value)}
             type="number" 
+            placeholder={pagesPlaceholder ? 'Type count of pages!' : 'Pages'}
             value={pagesInput}            
           />
-        </label>
-      </div>   
-      <div>
-        <label>
-          <p>Description:</p> 
-          <textarea id='focus'
-            onChange={e => setDescriptionInput(e.target.value)}
-            type="text" 
-            value={descriptionInput}            
-          />
-        </label>
-      </div>                   
-        <button className="blue" type="submit">Add Book</button>
-        {handleShowForm}
-    </form>
-      <button onClick={handleShowForm} className={`btnAddForm blue ${isFormVisible ? 'active' : ''}`}>Adding form</button>
+        </div>    
+        <textarea
+          className={descriptionPlaceholder ? 'red' : null}
+          onChange={e => setDescriptionInput(e.target.value)}
+          type="text" 
+          placeholder={descriptionPlaceholder ? 'Type short description (min 20 chars)!' : 'Description'}
+          value={descriptionInput}            
+        />
+      </div>
+      <button className="submit" type="submit">Add Book</button>      
+      <button className="submit cancel" onClick={id_book ? callbackEditBook : handleShowForm} type='button'>Cancel</button>      
+      </form>
+      <button onClick={handleShowForm} className={`btnAddForm ${isFormVisible ? 'active' : ''}`}>Adding form</button>
     </div>
   )
 }

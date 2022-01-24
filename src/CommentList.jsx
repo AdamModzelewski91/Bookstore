@@ -24,25 +24,23 @@ const CommentList = ({commentAuthor, commentRate, comment, id_comment, id_book})
       
     />
   ) : (
-    <div className="btn-comment">      
-       <button onClick={toggleComment}>Edit Comment</button>        
-       <button onClick={handleDeleteComment}>Delete comment</button> 
+    <div className="right-corner">      
+       <button type='button' onClick={toggleComment}><i className="fas fa-pencil-alt"></i></button>        
+       <button type='button' onClick={handleDeleteComment}><i className="fas fa-times"></i></button> 
     </div>
   )
   
   return ( 
-    <div>
       <div className ='comment'>
         <div className = 'wrap'>
-          <p>Name</p>
+          <p>Name:</p>
           <h4>{commentAuthor}</h4>
-          <p>Rate</p>
+          <p>Rate:</p>
           <h4>{commentRate}</h4>       
         </div>
-        <textarea>{comment}</textarea>  
+        <p className='textarea'>{comment}</p>  
+        {formOrCommentElement}    
       </div>
-      {formOrCommentElement}    
-    </div>
    );
 }
 

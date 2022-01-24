@@ -1,79 +1,117 @@
 @import './App.scss';
 
-$books-background: rgba(0, 82, 252, 0.1);
-$element-background: rgba(0, 82, 252, 0.1);
-
-
-@mixin breakpoint($point) {
-  @if $point == desktop_1200w{
-    @media (min-width: 1200px){
-      @content;
-    }
-  }
-}
-
-.br-5{
-  border-radius: 5px;
-}
-
-.pad-l-5{
-  padding-left: 5px;
-}
-
-.bg-input{
-  background-color: rgba(255,255,255, 0.3);
-}
+$books-background: rgba(230, 230, 230, 0.8);
 
 .element{
   position: relative;  
-  background-color: $element-background;
-  border-bottom-left-radius: 25px;  
-  border-bottom-right-radius: 25px;    
 }
 
 .books{   
   position: relative;
-  background-color: $books-background;
-  border-bottom-left-radius: 25px;  
-  border-bottom-right-radius: 25px;   
-  padding: 20px 20px;   
-  margin: 0 5vh 0 5vh;
+  background-color: $books-background;    
+  padding: 20px; 
+  border-bottom: 2px solid #fff;
+
+  @include breakpoint (mobile_540w){
+    margin: 0 5vh;
+  }
+
+  @include breakpoint (tablet_768w) {     
+      font-size: 130%;    
+  }
+
   @include breakpoint(desktop_1200w){
     width: 60%;
     margin: 0 auto;
   }
+
+  h2{
+    text-align: center;
+    margin-top: 20px;
+
+    @include breakpoint (tablet_768w){
+      margin: 0;
+    }
+  }
+
+  h3{
+    text-align: center;
+    font-weight: normal;
+    padding: 5px 0 10px;
+  }
+
   p{
-    padding: 10px 0 5px;    
+    padding: 10px 0 5px 20px;    
   }
-  p:nth-child(1){
-    padding-top: 0;
-  }
-  textarea{
+  
+  .textarea{
     font-family: $font-stack;
     width: 100%;
     background-color: rgba(255,255,255, 0.5); 
     resize: vertical;
     min-height: 150px;
     border: none;
+    padding: 10px 20px;
+    margin-bottom: 25px;
+    font-size: 100%;
   }
-}
 
-.commentBTNs{
-  display: flex;  
-  button{
-    width: 30%;
-    border-radius: 0;
-    flex-grow: 1;  
-    margin-top: 10px;
+  table{
+    display: flex;
+    background-color: $books-background;
+    padding: 10px 20px;  
+    
+    tbody{
+      display: flex;
+      width: 100%;
+
+      @include breakpoint (tablet_768w){        
+        flex-direction: column;
+      }
+
+      tr{
+        display: flex;      
+        flex-direction: column;    
+        flex: 1 1;
+        flex-wrap: wrap;
+
+        @include breakpoint (tablet_768w){
+          flex-direction: row;       
+        }
+      }
+      
+      th, td{
+        text-align: left;        
+  
+        @include breakpoint (tablet_768w){
+          width: 25%;
+        }
+      }
+    }
+  }
+  
+  .commentBTNs{   
+  
+    .right-corner{
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  
+    .addComment{
+      position: absolute;    
+      bottom: 0;
+      right: 0;
+      margin: 0;
+      border-radius: 0;
+      border-top-left-radius: 15px;
+      padding: 5px 10px;
+      width: auto;    
+      height: auto;
+      background-color: #999999;    
+    }
   }
 }
 
 // media query
 
-@media (min-width: 768px) {
-  .commentBTNs button,
-  .books textarea,
-  .books{
-    font-size: 130%;
-  }  
-}
